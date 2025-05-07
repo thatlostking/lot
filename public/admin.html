@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel</title>
+  <script src="/socket.io/socket.io.js"></script>
+  <script defer src="admin.js"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="p-10 bg-gray-100">
+  <h1 class="text-2xl font-bold mb-4">Admin Panel</h1>
+  <div id="stats" class="mb-6"></div>
+  <div>
+    <label class="mr-2">Announce Winner:</label>
+    <input type="number" id="winnerInput" class="border px-2 py-1" min="1" max="10">
+    <button id="announceBtn" class="ml-2 bg-green-600 text-white px-4 py-2 rounded">Announce</button>
+  </div>
+</body>
+</html>
