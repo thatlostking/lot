@@ -19,19 +19,22 @@ const interval = setInterval(() => {
   }
 }, 1000);
 
+// Create number buttons dynamically
 for (let i = 1; i <= 10; i++) {
   const btn = document.createElement('button');
   btn.textContent = i;
   btn.className = 'number-btn bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-800';
   btn.onclick = () => {
-    if (selectedNumber !== null) return;
+    if (selectedNumber !== null) return;  // Prevent multiple selections
     selectedNumber = i;
-    socket.emit('selectNumber', i);
-    highlightSelected(i);
+    console.log(`User selected number: ${i}`);  // Log selection in the console
+    socket.emit('selectNumber', i);  // Emit number to the server
+    highlightSelected(i);  // Highlight the selected number
   };
   grid.appendChild(btn);
 }
 
+// Highlight selected number
 function highlightSelected(number) {
   const buttons = document.querySelectorAll('.number-btn');
   buttons.forEach((btn) => {
@@ -45,10 +48,12 @@ function highlightSelected(number) {
   });
 }
 
+// Update UI with the selected number
 socket.on('yourNumber', (num) => {
   choice.textContent = `You selected: ${num}`;
 });
 
+// Show winner popup
 socket.on('winnerAnnounced', (winner) => {
   popup.textContent = `🎉 Winning Number is ${winner}!`;
   popup.classList.remove('hidden');
